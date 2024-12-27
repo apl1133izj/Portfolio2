@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,16 +15,14 @@ public class Warrior : MonoBehaviour
     public GameObject reSearchTagGameObject;
     Rigidbody2D rigidbody2;
 
-    public float moveSpeed;//�÷��̾� ����Ʈ
-    public float checkRadius = 1.0f; // Ȯ���� �ݰ�
-    public bool warriorActionsBool;//������ �ٸ� ��Ŀ�� �ִ��� 
+    public float moveSpeed;//속도
+    public float checkRadius = 1.0f; // 사거리
+    public bool warriorActionsBool;//공격 
     public float warkTime;
-    public string tagName;//��Ŀ�� ã�� tag
-    public string houseName;//��Ŀ�� ���� ���� �� ã�� �� �̸� 
-    public bool warkerFound;//�� �� �Ÿ��� ã�Ҵ°�
-    public bool goHouseBool;//������ ���ư��� ���ΰ�
-    public bool mineBool; //���꿡 �����ߴ°�
-    public bool mineWarkeEnd;
+    public string tagName;//적 tag
+    public string houseName;//집 이름 
+    public bool warkerFound;//다른 워리어 찾기
+    public bool goHouseBool;//집 으로 가라는 명령
 
     float stopPosX;
     float stopPosy;
@@ -73,13 +71,8 @@ public class Warrior : MonoBehaviour
             GoHouse();
         }
         HP();
-        // HP 함수는 필요한 경우에만 호출되도록 변경합니다.
-        if (Time.frameCount % 30 == 0)
-        {
-            HP();
-        }
-      
-            Avoiding();
+
+        Avoiding();
         
         if (avoidingSaveBool)
         {
@@ -190,22 +183,22 @@ public class Warrior : MonoBehaviour
     }
     public void WarriorAction()
     {
-        // 모든 나무 오브젝트를 찾기
-        GameObject[] warriorActionGameObject = GameObject.FindGameObjectsWithTag(tagName);
-        if (warriorActionGameObject.Length > 0)
+        // 모든 고블린 오브젝트를 찾기
+        GameObject[] warkerActionGameObject = GameObject.FindGameObjectsWithTag(tagName);
+        if (warkerActionGameObject.Length > 0)
         {
             GameObject closestGoblin = null;
             float closestDistance = Mathf.Infinity;
-            // 모든 나무에 대해 거리를 계산하고 가장 가까운 나무 찾기
-            foreach (GameObject warriorActions in warriorActionGameObject)
+            // 모든 고블린에 대해 거리를 계산하고 가장 가까운 고블린 찾기
+            foreach (GameObject warkerActions in warkerActionGameObject)
             {
-                float distanceToTree = Vector2.Distance(transform.position, new Vector2(warriorActions.transform.position.x + stopPosX, warriorActions.transform.position.y + stopPosy));
+                float distanceToTree = Vector2.Distance(transform.position, new Vector2(warkerActions.transform.position.x + stopPosX, warkerActions.transform.position.y + stopPosy));
                 //Debug.Log(distanceToTree);
                 if (distanceToTree <= closestDistance)
                 {
-          
-                    // 현재 나무가 더 가까우면 업데이트
-                    closestGoblin = warriorActions;
+
+                    // 현재 고블린이 더 가까우면 업데이트
+                    closestGoblin = warkerActions;
                     closestDistance = distanceToTree;
                 }
             }
@@ -267,6 +260,7 @@ public class Warrior : MonoBehaviour
             //모든 조건이 아닐 경우
         }
     }
+    //집 으로 돌아가기
     public void GoHouse()
     {
         Tower[] warriorhouses = FindObjectsOfType<Tower>();
