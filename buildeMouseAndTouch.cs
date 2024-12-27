@@ -79,20 +79,20 @@ public class buildeMouseAndTouch : MonoBehaviour
                 Vector2 mousePosition = Input.mousePosition;//마우스 위치 저장
                 //화면의 마우스 위치를 월드 공간으로 변환
                 Vector2 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
-                if (buildKind == BuildKind.BuildHouse)
+                
+                if (buildKind == BuildKind.BuildHouse)//워커 집 짓기
                 {
                     buildWarkerInstBool = true;
                     GameObject xpGameObject = Instantiate(xp, transform.position, Quaternion.identity);
                     GameObject warkerGameObject = Instantiate(buildPrefab[0], worldMousePosition, Quaternion.identity);            
                }
-                else if (buildKind == BuildKind.BuildMine)
+                else if (buildKind == BuildKind.BuildMine)//광산 짓기
                 {
                     buildWarkerInstBool = true;
                     GameObject xpGameObject = Instantiate(xp, transform.position, Quaternion.identity);
                     GameObject warkerGameObject = Instantiate(buildPrefab[1], worldMousePosition, Quaternion.identity);
                 }
-                else if (buildKind == BuildKind.BuildTower)
+                else if (buildKind == BuildKind.BuildTower)//타워(병사 훈련소) 짓기
                 {
                     buildWarkerInstBool = true;
                     GameObject xpGameObject = Instantiate(xp, transform.position, Quaternion.identity);
