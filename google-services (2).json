@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "188853287826",
+    "project_id": "leonard-fe720",
+    "storage_bucket": "leonard-fe720.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188853287826:android:d8834703e3324fdf9c9f4b",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.leonard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoqoHQvcJEtr_j5cszR9j72mdYRgfeLlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
