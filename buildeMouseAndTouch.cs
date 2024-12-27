@@ -38,7 +38,7 @@ public class buildeMouseAndTouch : MonoBehaviour
     void HandleTouchBegin()
     {
 
-        Camera mainCamera = Camera.main; // �� ��ȯ �Ŀ��� �ùٸ� ī�޶� ������ ����
+        Camera mainCamera = Camera.main; // 씬 전환 후에도 올바른 카메라 참조를 위해
         if (mainCamera != null)
         {
             Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -72,18 +72,12 @@ public class buildeMouseAndTouch : MonoBehaviour
             }
 
         }
-        else if (Input.GetMouseButton(0))
-        {
-
-
-
-        }
         else if (Input.GetMouseButtonUp(0) && buildEnd)
         {
-            if (buildGread)
+            if (buildGread)//다른 건물이 없는가 확인
             {
-                Vector2 mousePosition = Input.mousePosition;
-
+                Vector2 mousePosition = Input.mousePosition;//마우스 위치 저장
+                //화면의 마우스 위치를 월드 공간으로 변환
                 Vector2 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
                 if (buildKind == BuildKind.BuildHouse)
